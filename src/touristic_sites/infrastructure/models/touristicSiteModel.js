@@ -3,8 +3,9 @@ const Schema = mongoose.Schema
 
 
 const TouristicSiteSchema = new Schema({
+    uuid: { type: String, unique: true },
     name: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String },
     country: { type: String, required: true },
 })
 

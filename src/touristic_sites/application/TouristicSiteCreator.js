@@ -6,16 +6,21 @@ const { TouristicSite } = require("../domain/TouristicSite")
  */
 class TouristicSiteCreator {
 
+    /**
+     * 
+     * @param {TouristicSiteRepository} touristicSiteRepo 
+     */
     constructor(touristicSiteRepo = new TouristicSiteRepository()) {
         this.touristicSiteRepo = touristicSiteRepo
     }
 
-    listTouristicSites = async () => {
-        return await this.touristicSiteRepo.getAllTouristicSites()
-    }
-
-    registerTouristicSite = async ({ data }) => {
-        const newTouristicSite = TouristicSite(data)
+    /**
+     * Async function to register a touristic site
+     * @param {Object} param -  
+     * @returns 
+     */
+    registerTouristicSite = async ({ name, description, country }) => {
+        const newTouristicSite = new TouristicSite({ name, description, country })
         const touristicSiteCreated = await this.touristicSiteRepo.createTouristicSite(newTouristicSite)
         return touristicSiteCreated
     }
