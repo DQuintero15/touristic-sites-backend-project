@@ -3,7 +3,7 @@ class TouristicSiteRepository {
     getTouristicSiteById = async (uuid) => { }
     createTouristicSite = async (touristicSite) => { }
     deleteTouristicSiteById = async (uuid) => { }
-    updateTouristicSite = async (uuid) => { }
+    updateTouristicSite = async (uuid, data) => { }
 }
 
 module.exports = { TouristicSiteRepository }
