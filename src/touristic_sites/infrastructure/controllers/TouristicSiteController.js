@@ -2,6 +2,7 @@ const { TouristicSiteCreator } = require("../../application/TouristicSiteCreator
 const { TouristicSiteList } = require("../../application/TouristicSiteList")
 const { TouristicSiteById } = require("../../application/TouristicSiteById")
 const { TouristicSiteDeleteById } = require("../../application/TouristicSiteDeleteById")
+const { TouristicSiteEditor } = require("../../application/TourisitcSiteEditor")
 
 
 /**
@@ -19,12 +20,14 @@ class TouristicSiteController {
     constructor(touristicSiteCreator = new TouristicSiteCreator(),
         touristicSiteList = new TouristicSiteList(),
         touristicSiteById = new TouristicSiteById(),
-        touristicSiteDeleteById = new TouristicSiteDeleteById()) {
+        touristicSiteDeleteById = new TouristicSiteDeleteById(),
+        touristicSiteEditor = new TouristicSiteEditor()) {
 
         this.touristicSiteCreator = touristicSiteCreator
         this.touristicSiteList = touristicSiteList
         this.touristicSiteById = touristicSiteById
         this.touristicSiteDeleteById = touristicSiteDeleteById
+        this.touristicSiteEditor = touristicSiteEditor
     }
 
     /**
@@ -78,6 +81,18 @@ class TouristicSiteController {
         try {
             const uuid = request.params.uuid
             const data = await this.touristicSiteDeleteById.deleteTouristicSiteById(uuid)
+            response.send({ data })
+            response.status(200)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    updateTouristicSite = async (request, response) => {
+        try {
+            const uuid = request.params.uuid
+            const dataToUpdate = request.body
+            const data = await this.touristicSiteEditor.updateTouristicSite(uuid, dataToUpdate)
             response.send({ data })
             response.status(200)
         } catch (error) {
