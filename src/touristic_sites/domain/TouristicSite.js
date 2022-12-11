@@ -18,4 +18,4 @@ class TouristicSite {
     }
 }
 
-module.exports = TouristicSite
+module.exports = { TouristicSite }
